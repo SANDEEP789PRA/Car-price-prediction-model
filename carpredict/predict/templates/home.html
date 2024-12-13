@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Service Website</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+
+
+    <style>
+        .hero {
+            background-image: url("../static/image/pexels-albinberlin-919073.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+{% comment %}         
+        .team-member {
+            background-color: #708090;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            max-width: 250px;
+            text-align: center;
+        }
+        
+        .about-section {
+            padding: 60px 20px;
+            background-color: #C0C0C0;
+            text-align: center;
+        }
+        
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            
+        } {% endcomment %}
+
+        .services-section {
+            padding: 60px 20px;
+            background-color: White;
+            text-align: center;
+        }
+        
+
+                
+        /* Underline Effect */
+        nav ul li a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #fff; /* White underline */
+            transition: width 0.4s ease, background-color 0.4s ease; /* Smooth underline transition */
+            position: absolute;
+            left: 50%;
+            bottom: -5px; /* Positioning the underline */
+            transform: translateX(-50%);
+        }
+
+        /* Hover Effects */
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Subtle background on hover */
+            color: black; /* Change text color on hover */
+            transform: translateY(-2px); /* Lift effect */
+        }
+
+        nav ul li a:hover::after {
+            width: 100%; /* Full width on hover */
+        }
+
+      
+
+    
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="{% url 'SignupPage' %}" id="loginBtn">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section (Home) -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            
+            <h1>Welcome to Our Car Price Prediction Tool</h1>
+            <p class="p1">Your one-stop solution for all car needs.</p>
+            <a href="#services" class="btn">Explore Services</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <h2>Our Services</h2>
+        <div class="services-container">
+            <div class="service-box">
+                <h3>Car Price Prediction</h3>
+                <p>A Car Price Prediction service is a data-driven platform or tool that uses machine learning (ML) or statistical models to estimate the price of a car based on various factors. These services are valuable for both buyers and sellers of cars, helping them to determine a fair market price.</p>
+                {% comment %} <img src="register.webp" alt="Car Repair"> {% endcomment %}
+                <a href="{% url 'carpriceprediction' %}"><button type="submit" class="predict-btn"    style="display: inline-block; margin-top: 20px; padding: 10px 20px;">Predict Now</button></a>
+            </div>
+            <div class="service-box">
+                <h3>Selling Car</h3>
+                <p>Car selling services aim to streamline the process of selling vehicles for both individual sellers and dealerships. They provide a platform where sellers can list their cars and potential buyers can browse available vehicles, making the transaction more efficient.</p>
+                {% comment %} <img src="https://images.unsplash.com/photo-1574158622682-fc0c3fc3d0b2" alt="Oil Change"> {% endcomment %}
+                <a href=""><button type="submit" class="predict-btn"  style="display: inline-block; margin-top: 50px; padding: 10px 20px;">Sell Now</button></a>
+                
+            </div>
+            <div class="service-box">
+                <h3>Car Buying</h3>
+                <p>A car buying service is a platform or company that assists consumers in purchasing vehicles. These services can simplify the car buying process, making it more efficient and less stressful. Here's a comprehensive description of car buying services:</p>
+                {% comment %} <img src="https://images.unsplash.com/photo-1604919266107-3f76ee0e0454" alt="Tire Replacement"> {% endcomment %}
+                <a href=""><button type="submit" class="predict-btn" style="display: inline-block; margin-top: 50px; padding: 10px 20px;">Buy Now</button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-section">
+        <h2>Meet Our Team</h2>
+        <div class="team-container">
+            <div class="team-member">
+                <img src="/static/image/Tanish2.jpg" alt="John Doe">
+                <h3>Tanish Patidar</h3>
+                <p></p>
+                <p>Student of Sagar Institute of Science and Technology ,Gandhi Nagar, Bhopal</p>
+                
+                
+            </div>
+
+           
+            <div class="team-member">
+                <img src="/static/image/Ankit.jpg" alt="Jane Smith">
+                <h3>Ankit Kumbhkar</h3>
+                <p></p>
+                <p>Student of Sagar Institute of Science and Technology ,Gandhi Nagar, Bhopal.</p>
+            </div>
+            <div class="team-member">
+                <img src="/static/image/sandeep1.jpg" alt="Mark Johnson">
+                <h3>Sandeep Prajapati</h3>
+                <p></p>
+                <p>Student of Sagar Institute of Science and Technology ,Gandhi Nagar, Bhopal.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <form class="contact-form" method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="Your Name" name="username" required>
+            <input type="email" placeholder="Your Email" name="useremail" required>
+            <textarea placeholder="Your Message" name="message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Login/Signup Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Login / Signup</h2>
+            <form class="login-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#">Signup here</a></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for modal functionality
+        const loginBtn = document.getElementById('loginBtn');
+        const modal = document.getElementById('loginModal');
+        const closeBtn = document.querySelector('.close-btn');
+
+        loginBtn.onclick = function() {
+            modal.style.display = 'block';
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

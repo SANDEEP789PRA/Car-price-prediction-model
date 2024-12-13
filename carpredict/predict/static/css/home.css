@@ -1,0 +1,488 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #333;
+}
+
+h1, h2, h3 {
+    margin-bottom: 20px;
+}
+
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Navigation Styles */
+/* Navigation Styles */
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+nav {
+    background: linear-gradient(90deg, #0077b6, #00b4d8); /*Gradient background*/
+    padding: 15px 20px;
+    position: sticky;
+    
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Deeper shadow for depth */
+    transition: background 0.3s ease; /* Transition for background on scroll */
+}
+
+nav:hover {
+    background: linear-gradient(90deg, #005f8d, #0096c7); /* Darker gradient on hover */
+}
+
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+nav ul.left {
+    display: flex; /* Keep left items in flex */
+}
+
+nav ul li {
+    margin: 0 20px;
+    position: relative; /* For the pseudo-element */
+}
+
+nav ul li a {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600; /* Slightly bolder font */
+    text-transform: uppercase;
+    padding: 10px 15px;
+    border-radius: 5px; /* Rounded corners for links */
+    transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+}
+
+/* Underline Effect */
+nav ul li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #fff; /* White underline */
+    transition: width 0.4s ease, background-color 0.4s ease; /* Smooth underline transition */
+    position: absolute;
+    left: 50%;
+    bottom: -5px; /* Positioning the underline */
+    transform: translateX(-50%);
+}
+
+/* Hover Effects */
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle background on hover */
+    color: #00b4d8; /* Change text color on hover */
+    transform: translateY(-2px); /* Lift effect */
+}
+
+nav ul li a:hover::after {
+    width: 100%; /* Full width on hover */
+}
+
+/* Right-aligned Button */
+#loginBtn {
+    margin-left: auto; /* Pushes the login button to the right */
+    padding: 12px 20px; /* Increased padding for better button size */
+    background-color: #fff; /* White background for button */
+    color: #0077b6; /* Blue text for button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+#loginBtn:hover {
+    background-color: #00b4d8; /* Change to blue background on hover */
+    color: #fff; /* Change text color to white on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Spacing adjustments */
+    }
+}
+
+
+/* Hero Section (Home) */
+.hero {
+    background-image: url("../static/image/pexels-albinberlin-919073.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    letter-spacing: 2px;
+}
+
+.hero-content p {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+.btn {
+    background-color: #0077b6;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #00b4d8;
+    transform: translateY(-3px);
+}
+
+/* Services Section */
+.services-section {
+    padding: 60px 20px;
+    background-color: #eddb51;
+    text-align: center;
+}
+
+.services-section h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.services-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.service-box {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    flex: 1;
+    max-width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.service-box:hover {
+    transform: translateY(-5px);
+
+}
+
+.service-box h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.service-box p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.service-box img {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+/* button desing for car price prediction */
+.predict-btn {
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    font-size: 18px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 114, 255, 0.3);
+    transition: all 0.3s ease;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: auto;
+  }
+
+  .predict-btn:hover {
+    background: linear-gradient(90deg, #0072ff, #00c6ff);
+    box-shadow: 0 12px 20px rgba(0, 114, 255, 0.4);
+    transform: translateY(-3px);
+  }
+
+  .predict-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 6px 10px rgba(0, 114, 255, 0.2);
+  }
+/* About Us Section */
+.about-section {
+    padding: 60px 20px;
+    background-color: #e9ecef;
+    text-align: center;
+}
+
+.about-section h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 250px;
+    text-align: center;
+}
+
+.team-member img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.team-member h3 {
+    margin: 15px 0 5px;
+}
+
+/* Contact Us Section */
+.contact-section {
+    
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #1e1e1e; /* Darker section background */
+}
+
+.contact-section h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #444; /* Darker border */
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #2a2a2a; /* Darker input background */
+    color: #ffffff; /* Light text in inputs */
+    transition: border-color 0.3s;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #aaaaaa; /* Light grey placeholder text */
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    border-color: #28a745; /* Highlight border on focus */
+    outline: none;
+}
+
+.contact-form button {
+    padding: 12px;
+    background: linear-gradient(90deg, #28a745, #218838);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.contact-form button:hover {
+    background: linear-gradient(90deg, #218838, #28a745);
+    transform: scale(1.05);
+}
+
+.contact-form button:active {
+    transform: scale(0.95);
+}
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Login and Signup Modal Styles */
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fff; /* White background */
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px; /* Could be more or less, depending on screen size */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px; /* Space below heading */
+    color: #0077b6; /* Color for heading */
+}
+
+/* Tab Styles */
+.tab {
+    list-style: none; /* Remove default list styling */
+    padding: 0;
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: space-around; /* Space tabs evenly */
+    margin-bottom: 20px; /* Space below tabs */
+}
+
+.tab li {
+    cursor: pointer; /* Pointer cursor on hover */
+    padding: 10px 20px; /* Padding for clickable area */
+    background-color: #0077b6; /* Tab background color */
+    color: white; /* Tab text color */
+    border-radius: 5px; /* Rounded corners */
+    transition: background 0.3s ease; /* Transition for hover effect */
+}
+
+.tab li:hover {
+    background-color: #00b4d8; /* Lighter color on hover */
+}
+
+.tab li.active {
+    background-color: #005f8d; /* Darker color for active tab */
+}
+
+/* Form Styles */
+.form {
+    display: flex; /* Flexbox for layout */
+    flex-direction: column; /* Column layout */
+}
+
+.form input {
+    padding: 12px; /* Padding for input fields */
+    margin: 10px 0; /* Space between input fields */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    transition: border 0.3s ease; /* Transition for border color */
+}
+
+.form input:focus {
+    border-color: #0077b6; /* Change border color on focus */
+    outline: none; /* Remove outline */
+}
+
+.form button {
+    padding: 12px; /* Padding for button */
+    background-color: #0077b6; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background 0.3s ease; /* Transition for hover effect */
+}
+
+.form button:hover {
+    background-color: #00b4d8; /* Lighter color on hover */
+}
+
+/* Toggle Text Styles */
+.toggle-text {
+    margin-top: 10px; /* Space above toggle text */
+    font-size: 14px; /* Font size for toggle text */
+    color: #555; /* Color for toggle text */
+}
+
+.hidden {
+    display: none; /* Hide elements with this class */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%; /* Make modal width responsive */
+    }
+}

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Price Predictor</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        background-color: ;
+      }
+      .form-container {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      select,
+      input[type="number"] {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button[type="button"] {
+        width: 100%;
+        height: 40px;
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button[type="button"]:hover {
+        background-color: #3e8e41;
+      }
+      #output {
+        margin-top: 20px;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Welcome to Car Price Predictor</h1>
+      <form id="priceForm" method="post">
+        {% csrf_token %}
+
+        <label for="brand">Select Brand</label>
+        <select id="brand" name="brand" required></select>
+
+        <label for="model">Select Model</label>
+        <select id="model" name="model" required></select>
+
+        <label for="year">Enter Year of Purchase</label>
+        <input
+          type="number"
+          id="year"
+          name="year"
+          placeholder="Enter year"
+          min="1900"
+          max="2024"
+          required
+        />
+
+        <label for="fuel">Select Fuel Type</label>
+        <select id="fuel" name="fuel" required></select>
+
+        <label for="km">Enter Number of KM Travelled</label>
+        <input
+          type="number"
+          id="km"
+          name="km"
+          placeholder="Enter kilometers"
+          min="0"
+          required
+        />
+
+        <label for="city">Select City</label>
+        <select id="city" name="city" required></select>
+
+        <button type="button" id="submitBtn">Predict Price</button>
+      </form>
+
+      <div id="output">
+        <h2>
+          Predicted Price:
+          <input
+            type="text"
+            id="predictedPrice"
+            readonly
+            style="font-size: 18px; text-align: center"
+          />
+        </h2>
+      </div>
+    </div>
+
+    <script>
+      // Predefined data
+      const brands = [
+        { name: "Maruti Suzuki", id: 221 },
+        { name: "Hyundai", id: 214 },
+        { name: "Honda", id: 117 },
+        { name: "Mercedes-Benz", id: 107 },
+        { name: "Toyota", id: 88 },
+        { name: "BMW", id: 79 },
+        { name: "Audi", id: 72 },
+        { name: "Mahindra", id: 67 },
+        { name: "Volkswagen", id: 58 },
+        { name: "Ford", id: 53 },
+        { name: "Skoda", id: 33 },
+        { name: "Tata", id: 33 },
+        { name: "Renault", id: 31 },
+        { name: "Jaguar", id: 21 },
+        { name: "Land Rover", id: 19 },
+        { name: "Volvo", id: 11 },
+        { name: "MG", id: 10 },
+        { name: "Kia", id: 9 },
+        { name: "Nissan", id: 9 },
+        { name: "MINI", id: 7 },
+        { name: "Chevrolet", id: 7 },
+        { name: "Jeep", id: 7 },
+        { name: "Porsche", id: 5 },
+        { name: "Mitsubishi", id: 4 },
+        { name: "Bentley", id: 3 },
+        { name: "Datsun", id: 3 },
+        { name: "Lexus", id: 2 },
+        { name: "Fiat", id: 2 },
+        { name: "Lamborghini", id: 1 },
+        { name: "Isuzu", id: 1 },
+        { name: "Mahindra-Renault", id: 1 },
+      ];
+
+      const models = [
+        { name: "Creta", id: 56 },
+        { name: "City", id: 51 },
+        { name: "Innova", id: 50 },
+        { name: "Swift", id: 50 },
+        { name: "WagonR", id: 220 },
+        { name: "Baleno", id: 219 },
+        { name: "i20", id: 213 },
+        { name: "Verna", id: 212 },
+        { name: "Jazz", id: 116 },
+        { name: "Civic", id: 115 },
+        { name: "C-Class", id: 106 },
+        { name: "E-Class", id: 105 },
+        { name: "Fortuner", id: 87 },
+        { name: "Camry", id: 86 },
+        { name: "3 Series", id: 78 },
+        { name: "5 Series", id: 77 },
+        { name: "Q5", id: 71 },
+        { name: "A4", id: 70 },
+        { name: "Scorpio", id: 66 },
+        { name: "XUV500", id: 65 },
+        { name: "Polo", id: 57 },
+        { name: "Vento", id: 56 },
+        { name: "Ecosport", id: 52 },
+        { name: "Figo", id: 51 },
+        { name: "Rapid", id: 32 },
+        { name: "Octavia", id: 31 },
+        { name: "Nexon", id: 32 },
+        { name: "Tiago", id: 31 },
+        { name: "Kwid", id: 30 },
+        { name: "Duster", id: 29 },
+        { name: "XE", id: 20 },
+        { name: "XF", id: 19 },
+        { name: "Range Rover", id: 18 },
+        { name: "Discovery", id: 17 },
+        { name: "XC90", id: 10 },
+        { name: "XC60", id: 9 },
+        { name: "Hector", id: 9 },
+        { name: "Astor", id: 8 },
+        { name: "Seltos", id: 8 },
+        { name: "Sonet", id: 7 },
+        { name: "Micra", id: 8 },
+        { name: "Terrano", id: 7 },
+        { name: "Cooper", id: 6 },
+        { name: "Countryman", id: 5 },
+        { name: "Spark", id: 6 },
+        { name: "Beat", id: 5 },
+        { name: "Compass", id: 6 },
+        { name: "Wrangler", id: 5 },
+        { name: "Cayenne", id: 4 },
+        { name: "Macan", id: 3 },
+        { name: "Pajero", id: 3 },
+        { name: "Outlander", id: 2 },
+        { name: "Continental", id: 2 },
+        { name: "Flying Spur", id: 1 },
+        { name: "Go", id: 2 },
+        { name: "Redi-Go", id: 1 },
+        { name: "RX", id: 1 },
+        { name: "NX", id: 2 },
+        { name: "Punto", id: 1 },
+        { name: "Linea", id: 2 },
+        { name: "Urus", id: 1 },
+        { name: "D-Max", id: 1 },
+        { name: "Logan", id: 1 },
+      ];
+
+      const fuelTypes = [
+        { name: "Diesel", id: 686 },
+        { name: "Petrol", id: 596 },
+        { name: "CNG + 1", id: 7 },
+        { name: "Hybrid", id: 1 },
+      ];
+
+      const cities = [
+        { name: "Hyderabad", id: 238 },
+        { name: "Chennai", id: 228 },
+        { name: "Pune", id: 222 },
+        { name: "Bangalore", id: 180 },
+        { name: "Delhi", id: 159 },
+        { name: "Mumbai", id: 157 },
+        { name: "Thane", id: 48 },
+        { name: "Dehradun", id: 29 },
+        { name: "Noida", id: 11 },
+        { name: "Ghaziabad", id: 8 },
+        { name: "Lucknow", id: 6 },
+        { name: "Navi Mumbai", id: 5 },
+        { name: "Faridabad", id: 2 },
+        { name: "Panchkula", id: 1 },
+        { name: "Agra", id: 1 },
+      ];
+
+      // Populate dropdowns
+      function populateDropdown(id, data) {
+        const dropdown = document.getElementById(id);
+        data.forEach((item) => {
+          const option = document.createElement("option");
+          option.value = item.id;
+          option.textContent = item.name;
+          dropdown.appendChild(option);
+        });
+      }
+
+      // Initialize dropdowns on page load
+      $(document).ready(function () {
+        populateDropdown("brand", brands);
+        populateDropdown("model", models);
+        populateDropdown("fuel", fuelTypes);
+        populateDropdown("city", cities);
+
+        // Update models when a brand is selected
+        $("#brand").on("change", function () {
+          const selectedBrandId = $(this).val();
+          updateModelDropdown(selectedBrandId);
+        });
+
+        // Handle form submission
+        $("#submitBtn").on("click", function (event) {
+          event.preventDefault();
+          const formData = {
+            brand: $("#brand").val(),
+            model: $("#model").val(),
+            year: $("#year").val(),
+            fuel: $("#fuel").val(),
+            km: $("#km").val(),
+            city: $("#city").val(),
+            csrfmiddlewaretoken: "{{ csrf_token }}",
+          };
+
+          $.ajax({
+            type: "POST",
+            url: '{% url "carpriceprediction" %}', // Update to your endpoint
+            data: formData,
+            success: function (response) {
+              if (response.predicted_price) {
+                $("#predictedPrice").val(response.predicted_price);
+              } else if (response.error) {
+                alert("Error: " + response.error);
+              }
+            },
+            error: function (xhr, status, error) {
+              alert("An error occurred: " + error);
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

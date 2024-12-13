@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Locker Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+   body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #1d1f21, #2e3236);
+  color: #ffffff;
+}
+
+.container {
+  display: flex;
+  width: 60%;
+  max-width: 1200px;
+  margin: 20px;
+  background: #2e3236;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.left, .right {
+  flex: 1;
+  padding: 40px;
+}
+
+.left {
+  background-image: url('images/login.avif');
+ /* background: linear-gradient(105deg, skyblue, silver);  */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.left img {
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.right {
+    background-image: url('images/login2.avif');
+   /* background: linear-gradient(105deg, lavender, wheat);*/
+  background: mental;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form h2 {
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+form input {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #555;
+  border-radius: 8px;
+  outline: none;
+  background: #333;
+  color: #ffffff;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+form input:focus {
+  border-color: #36d1dc;
+  background: #444;
+}
+
+form button {
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #36d1dc;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 10px;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #5b86e5;
+}
+
+form .google-signin {
+  background: #4285f4;
+}
+
+a {
+  color: #36d1dc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  text-align: center;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h1>Exam Mastery Hub</h1>
+      <p>Unleash Your Academic Success with Exam Mastery Hub's Exam Excellence Platform</p>
+      
+    </div>
+    <div class="right">
+      <form action="/login/" method="POST">
+        {% csrf_token %}
+        <h2>Login</h2>
+        <input type="text" placeholder="Username or email" required>
+        <input type="password" placeholder="Password" required>
+        <a href="#">Forgot password?</a>
+        <button type="submit">Sign in</button>
+        <button type="button" class="google-signin">Sign in with Google</button>
+        <p><a href="/registration/">Create an Account</a></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form');
+        const inputs = form.querySelectorAll('input');
+      
+        inputs.forEach(input => {
+          input.addEventListener('focus', () => {
+            input.style.borderColor = '#36d1dc';
+            input.style.backgroundColor = '#444';
+          });
+      
+          input.addEventListener('blur', () => {
+            input.style.borderColor = '#555';
+            input.style.backgroundColor = '#333';
+          });
+        });
+      
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          // Add form submission logic here
+          alert('Form submitted!');
+        });
+      });
+      
+
+
+
+      
+  </script>
+</body>
+</html>

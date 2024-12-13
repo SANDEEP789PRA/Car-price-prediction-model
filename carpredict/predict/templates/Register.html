@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create an Account</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      
+      body {
+        
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+        color: white;
+      }
+      
+      .container {
+        display: flex;
+        
+        width: 90%;
+        max-width: 1200px;
+        height: 650px;
+        background-color: #252539;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      }
+      
+      .image-side {
+        flex: 1;
+        position: relative;
+        background-color: #2d2d45;
+      }
+      
+      .image-side img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.7);
+      }
+      
+      .overlay-text {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        color: white;
+        z-index: 10;
+      }
+      
+      .logo {
+        width: 120px;
+        margin-bottom: 30px;
+      }
+      
+      .back-button {
+        display: inline-block;
+        padding: 10px 18px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 25px;
+        font-size: 14px;
+        text-decoration: none;
+        color: white;
+        transition: background 0.3s;
+      }
+      
+      .back-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+      
+      h1 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-top: 30px;
+        color: white;
+      }
+      
+      .form-side {
+        flex: 1;
+        margin: auto;
+        padding: 60px;
+        background-color: #252539;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      h2 {
+        font-size: 30px;
+        margin-bottom: 20px;
+        color: white;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+      
+      p {
+        margin-bottom: 20px;
+        color: #bbb;
+      }
+      
+      p a {
+        color: #7c5eff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+      
+      p a:hover {
+        color: #d3bcff;
+      }
+      
+      form {
+        width: 100%;
+      }
+      
+      .input-row {
+        justify-content: space-between;
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      
+      .input-row input {
+        flex: 1;
+        padding: 14px;
+        border-radius: 8px;
+        border: none;
+        background-color: #33334d;
+        color: white;
+        outline: none;
+        font-size: 16px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+      
+      .input-row input:focus {
+        background-color: #444466;
+        box-shadow: 0 0 8px rgba(127, 91, 255, 0.5);
+      }
+      
+      input[type="email"], .input-password input {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: none;
+        background-color: #33334d;
+        color: white;
+        outline: none;
+        font-size: 16px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+      
+      input:focus {
+        background-color: #444466;
+        box-shadow: 0 0 8px rgba(127, 91, 255, 0.5);
+      }
+      
+      .input-password {
+        display: flex;
+        position: relative;
+      }
+      
+      .input-password button {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+      
+      .terms-conditions {
+        margin-bottom: 20px;
+        color: #bbb;
+      }
+      
+      .terms-conditions a {
+        color: #7c5eff;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .create-account-btn {
+        width: 100%;
+        padding: 14px;
+        background-color: #7c5eff;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+      
+      .create-account-btn:hover {
+        background-color: #6b4ee6;
+        box-shadow: 0 0 15px rgba(127, 91, 255, 0.7);
+      }
+      
+
+
+
+
+      .social-login {
+        width: 100%;
+        margin-top: 30px;
+      }
+      
+      .divider {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #bbb;
+        margin-bottom: 20px;
+      }
+      
+      .divider span {
+        flex-grow: 1;
+        padding: 0 10px;
+      }
+      
+      .divider::before, .divider::after {
+        content: "";
+        flex-grow: 1;
+        height: 1px;
+        background-color: #444;
+      }
+      
+      .social-btn-wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px; /* Space between buttons */
+      }
+      
+      .social-btn {
+        flex: 1; /* Makes the buttons take up equal space */
+        padding: 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #bbb;
+        transition: transform 0.3s, box-shadow 0.3s;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      
+      .google {
+        background-color: #ffffff;
+        color: #757575;
+      }
+      
+      .google:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+      }
+      
+      .apple {
+        background-color: #000000;
+        color: white;
+      }
+      
+      .apple:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      }
+      
+      .social-btn i {
+        margin-right: 10px;
+      }
+      @media (max-width: 768px) {
+        /* CSS rules for mobile devices */
+      }
+      
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image-side">
+      <img src="register.webp" alt="Background Image">
+      <div class="overlay-text">
+       
+        <a href="home.html" class="back-button">Back to website</a>
+        
+      </div>
+      
+    </div>
+    <div class="form-side">
+      <h2>Create an account</h2>
+      <p>Already have an account? <a href="/login">Log in</a></p>
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-row">
+          <input type="text" id="first-name" name="first-name" placeholder="First name" required>
+          <input type="text" id="last-name" name="last-name" placeholder="Last name" required>
+        </div>
+        <input type="username" id="username" name="username" placeholder="username" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <div class="input-password">
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          <button type="button" class="toggle-password">👁️</button>
+        </div>
+        <div class="terms-conditions">
+          <label>
+            <input type="checkbox" name="terms" required> I agree to the <a href="#">Terms & Conditions</a>
+          </label>
+        </div>
+        
+
+        <button  type="submit" class="create-account-btn">Create account</button>
+       
+      </form>
+     
+      <div class="social-login">
+        <div class="divider">
+          <span>Or register with</span>
+        </div>
+        <div class="social-btn-wrapper">
+          <button class="social-btn google">
+            <i class="fab fa-google"></i> Google
+          </button>
+          <button class="social-btn apple">
+            <i class="fab fa-apple"></i> Apple
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+  // Toggle password visibility
+const togglePassword = document.querySelector('.toggle-password');
+const passwordInput = document.querySelector('#password');
+
+togglePassword.addEventListener('click', function () {
+  const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+  passwordInput.setAttribute('type', type);
+  this.textContent = type === 'password' ? '👁️' : '🙈';  // Changes the icon based on visibility
+});
+
+// Add button hover effect for "Create Account"
+const createAccountBtn = document.querySelector('.create-account-btn');
+
+createAccountBtn.addEventListener('mouseover', function () {
+  createAccountBtn.style.boxShadow = "0 0 15px rgba(127, 91, 255, 0.7)";
+});
+
+createAccountBtn.addEventListener('mouseleave', function () {
+  createAccountBtn.style.boxShadow = "none";
+});
+
+  </script>
+</body>
+</html>
